@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ExpertLink Demo Website</title>
+  <style>
+    *{margin:0;padding:0;box-sizing:border-box;font-family:Arial,Helvetica,sans-serif}
+    body{background:#f7fbff;color:#07143d}
+    header{background:#fff;box-shadow:0 4px 20px rgba(0,0,0,.06);position:sticky;top:0;z-index:10}
+    .navbar{max-width:1200px;margin:auto;padding:18px 24px;display:flex;justify-content:space-between;align-items:center}
+    .logo{display:flex;align-items:center;gap:10px;font-size:26px;font-weight:800}
+    .logo-icon{width:42px;height:42px;background:linear-gradient(135deg,#005bff,#16c7bd);color:#fff;display:flex;align-items:center;justify-content:center;border-radius:14px}
+    .logo span{color:#005bff}
+    nav ul{list-style:none;display:flex;gap:34px}
+    nav a{text-decoration:none;color:#34405f;font-weight:700}
+    nav a:hover,nav a.active{color:#005bff}
+    .nav-buttons{display:flex;gap:12px}
+    button{cursor:pointer}
+    .btn-outline,.btn-primary{border:none;border-radius:12px;padding:12px 22px;font-weight:800;transition:.3s}
+    .btn-outline{background:#fff;border:1.5px solid #005bff;color:#005bff}
+    .btn-primary{background:#005bff;color:#fff;box-shadow:0 8px 20px rgba(0,91,255,.25)}
+    .btn-primary:hover,.btn-outline:hover{transform:translateY(-2px)}
+    .hero{max-width:1200px;margin:auto;padding:72px 24px 36px;display:grid;grid-template-columns:1.1fr .9fr;align-items:center;gap:50px}
+    .hero h1{font-size:62px;line-height:1.05;margin-bottom:22px;letter-spacing:-2px}
+    .hero h1 span{color:#005bff}
+    .hero p{font-size:20px;line-height:1.6;color:#5f6b86;margin-bottom:30px;max-width:620px}
+    .hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+    .learners{display:flex;align-items:center;gap:12px;color:#33415f;font-weight:700}
+    .avatars{display:flex}.avatar{width:38px;height:38px;border-radius:50%;border:3px solid #fff;margin-left:-10px;background:linear-gradient(135deg,#d7e8ff,#b9fff6);display:flex;align-items:center;justify-content:center}.avatar:first-child{margin-left:0}
+    .hero-image{background:linear-gradient(135deg,#eaf4ff,#dffcf8);border-radius:40px;padding:26px;position:relative;min-height:390px;box-shadow:0 20px 50px rgba(0,91,255,.12);overflow:hidden}
+    .people-card{position:relative;z-index:2;width:100%;height:338px;background:#fff;border-radius:32px;padding:26px;display:flex;flex-direction:column;justify-content:center;gap:20px;box-shadow:0 18px 40px rgba(0,0,0,.08)}
+    .people-row{display:flex;align-items:center;gap:18px}.person{flex:1;height:190px;background:linear-gradient(180deg,#f0f7ff,#fff);border-radius:28px;display:flex;flex-direction:column;justify-content:center;align-items:center;border:1px solid #e5eefb}
+    .person-face{width:86px;height:86px;border-radius:50%;background:linear-gradient(135deg,#005bff,#16c7bd);display:flex;align-items:center;justify-content:center;color:white;font-size:40px;margin-bottom:12px}
+    .laptop{width:72%;height:50px;background:#07143d;border-radius:12px;margin:0 auto;position:relative}
+    .laptop:after{content:"Online Mentoring Session";position:absolute;width:100%;text-align:center;color:#fff;font-size:13px;top:16px;left:0}
+    .search-section,.section{max-width:1200px;margin:auto;padding:34px 24px}
+    .search-box,.survey{background:#fff;padding:22px;border-radius:24px;box-shadow:0 15px 35px rgba(0,0,0,.07)}
+    .search-box h3{margin-bottom:16px;font-size:20px}
+    .filters{display:grid;grid-template-columns:1.8fr repeat(4,1fr) 1.3fr;gap:14px}
+    .filters input,.filter-btn,.filters select{height:48px;border:1px solid #dbe5f2;background:#fff;border-radius:12px;padding:0 16px;color:#42506c;font-weight:700;outline:none}
+    .filter-btn.active,.filter-btn:hover{background:#005bff;color:#fff;border-color:#005bff}
+    .section-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:22px}
+    .section-title h2{font-size:30px}.section-title a{color:#005bff;text-decoration:none;font-weight:800}
+    .expert-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+    .expert-card{background:#fff;border-radius:24px;padding:20px;box-shadow:0 12px 30px rgba(0,0,0,.07);transition:.3s;border:1px solid #eef4ff}.expert-card:hover{transform:translateY(-6px)}
+    .expert-top{display:flex;gap:14px;align-items:center;margin-bottom:16px}.expert-img{width:72px;height:72px;border-radius:22px;background:linear-gradient(135deg,#d6e7ff,#d9fff8);display:flex;align-items:center;justify-content:center;font-size:32px}
+    .expert-card h3{font-size:18px;margin-bottom:4px}.expert-card p{color:#65718b;font-size:14px;margin-bottom:8px}
+    .tag{display:inline-block;padding:5px 11px;border-radius:20px;font-size:12px;font-weight:800;color:#005bff;background:#e9f1ff}
+    .rating{color:#ff9900;margin:12px 0;font-weight:800}.book-btn{width:100%;height:42px;border-radius:12px;border:1.5px solid #005bff;color:#005bff;background:#fff;font-weight:800}.book-btn:hover{background:#005bff;color:#fff}
+    .steps,.survey-grid,.testimonials{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+    .step-card,.testimonial,.stat-card{background:#fff;border-radius:24px;padding:30px;box-shadow:0 12px 30px rgba(0,0,0,.06)}
+    .step-card{text-align:center}.step-icon{width:76px;height:76px;background:#e9f8ff;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 18px;color:#005bff;font-size:34px}
+    .step-card p,.testimonial p,.stat-card p{color:#65718b;line-height:1.6}.stat-card{background:#f7fbff;text-align:center;border:1px solid #e2ecf9}.stat-card h3{font-size:46px;color:#005bff;margin-bottom:8px}
+    footer{background:#061a4d;color:#fff;margin-top:40px;padding:42px 24px 24px}.footer-content{max-width:1200px;margin:auto;display:grid;grid-template-columns:1.5fr repeat(3,1fr);gap:30px}footer h3,footer h4{margin-bottom:16px}footer p,footer a{color:#cfd9f0;text-decoration:none;line-height:1.8;display:block}.copyright{max-width:1200px;margin:30px auto 0;padding-top:20px;border-top:1px solid rgba(255,255,255,.15);text-align:center;color:#b8c6e3}
+    .modal{display:none;position:fixed;inset:0;background:rgba(7,20,61,.55);z-index:999;align-items:center;justify-content:center;padding:20px}.modal-content{background:#fff;width:100%;max-width:460px;border-radius:26px;padding:28px;text-align:center;box-shadow:0 25px 60px rgba(0,0,0,.18)}.modal-content h2{margin-bottom:12px;color:#005bff}.modal-content p{color:#5f6b86;line-height:1.6;margin-bottom:22px}.close-btn{background:#005bff;color:#fff;border:none;border-radius:12px;padding:12px 24px;font-weight:800}
+    @media(max-width:950px){nav ul,.nav-buttons{display:none}.hero{grid-template-columns:1fr}.hero h1{font-size:44px}.filters,.expert-grid,.steps,.survey-grid,.testimonials,.footer-content{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header>
+  <div class="navbar">
+    <div class="logo"><div class="logo-icon">🔗</div>Expert<span>Link</span></div>
+    <nav><ul><li><a class="active" href="#">Home</a></li><li><a href="#experts">Find Experts</a></li><li><a href="#how">How It Works</a></li><li><a href="#survey">Survey</a></li></ul></nav>
+    <div class="nav-buttons"><button class="btn-outline">Sign In</button><button class="btn-primary">Sign Up</button></div>
+  </div>
+</header>
+<main>
+<section class="hero">
+  <div>
+    <h1>Connect with Experts.<br><span>Gain Real Experience.</span></h1>
+    <p>ExpertLink helps students and learners connect with professionals, book mentoring sessions, and gain practical guidance for their future careers.</p>
+    <div class="hero-actions">
+      <button class="btn-primary" onclick="scrollToExperts()">Find a Mentor →</button>
+      <div class="learners"><div class="avatars"><div class="avatar">👩</div><div class="avatar">👨</div><div class="avatar">👩‍💻</div></div><span>10,000+ learners already growing</span></div>
+    </div>
+  </div>
+  <div class="hero-image"><div class="people-card"><div class="people-row"><div class="person"><div class="person-face">👩‍🎓</div><strong>Learner</strong></div><div class="person"><div class="person-face">👨‍💼</div><strong>Expert</strong></div></div><div class="laptop"></div></div></div>
+</section>
+<section class="search-section">
+  <div class="search-box">
+    <h3>Find the right expert for you</h3>
+    <div class="filters">
+      <input type="text" id="searchInput" placeholder="Search by name or keyword..." onkeyup="filterExperts()">
+      <button class="filter-btn active" onclick="setCategory('All',this)">All</button>
+      <button class="filter-btn" onclick="setCategory('Technology',this)">Technology</button>
+      <button class="filter-btn" onclick="setCategory('Business',this)">Business</button>
+      <button class="filter-btn" onclick="setCategory('Design',this)">Design</button>
+      <select><option>Availability</option><option>Today</option><option>This Week</option></select>
+    </div>
+  </div>
+</section>
+<section class="section" id="experts">
+  <div class="section-title"><h2>Featured Experts</h2><a href="#">View all experts →</a></div>
+  <div class="expert-grid" id="expertGrid">
+    <div class="expert-card" data-category="Business" data-name="Arjun Mehta Product Manager Business"><div class="expert-top"><div class="expert-img">👨‍💼</div><div><h3>Arjun Mehta</h3><p>Product Manager</p><span class="tag">Business</span></div></div><div class="rating">★ 4.9 (128 reviews)</div><button class="book-btn" onclick="openModal('Arjun Mehta')">Book Session</button></div>
+    <div class="expert-card" data-category="Technology" data-name="Priya Nair Software Engineer Technology"><div class="expert-top"><div class="expert-img">👩‍💻</div><div><h3>Priya Nair</h3><p>Software Engineer</p><span class="tag">Technology</span></div></div><div class="rating">★ 4.8 (96 reviews)</div><button class="book-btn" onclick="openModal('Priya Nair')">Book Session</button></div>
+    <div class="expert-card" data-category="Design" data-name="Rahul Verma UI UX Designer Design"><div class="expert-top"><div class="expert-img">👨‍🎨</div><div><h3>Rahul Verma</h3><p>UI/UX Designer</p><span class="tag">Design</span></div></div><div class="rating">★ 4.9 (112 reviews)</div><button class="book-btn" onclick="openModal('Rahul Verma')">Book Session</button></div>
+    <div class="expert-card" data-category="Marketing" data-name="Neha Kapoor Digital Marketing Marketing"><div class="expert-top"><div class="expert-img">👩‍💼</div><div><h3>Neha Kapoor</h3><p>Digital Marketing Lead</p><span class="tag">Marketing</span></div></div><div class="rating">★ 4.8 (98 reviews)</div><button class="book-btn" onclick="openModal('Neha Kapoor')">Book Session</button></div>
+  </div>
+</section>
+<section class="section" id="how">
+  <div class="section-title"><h2>How It Works</h2></div>
+  <div class="steps"><div class="step-card"><div class="step-icon">🔍</div><h3>1. Find Your Expert</h3><p>Search by field, skills, rating, or availability.</p></div><div class="step-card"><div class="step-icon">📅</div><h3>2. Book a Session</h3><p>Choose a suitable time and book an online session.</p></div><div class="step-card"><div class="step-icon">🚀</div><h3>3. Learn & Grow</h3><p>Get advice, feedback, and real-world knowledge.</p></div></div>
+</section>
+<section class="section" id="survey">
+  <div class="survey"><div class="section-title"><h2>Student Survey Results</h2><a>Sample size: 120 students</a></div><div class="survey-grid"><div class="stat-card"><h3>82%</h3><p>need more practical guidance from experts.</p></div><div class="stat-card"><h3>76%</h3><p>would use an app to book expert sessions.</p></div><div class="stat-card"><h3>68%</h3><p>prefer online mentoring and flexible sessions.</p></div></div></div>
+</section>
+<section class="section">
+  <div class="section-title"><h2>What Learners Say</h2></div>
+  <div class="testimonials"><div class="testimonial"><p>“ExpertLink helped me understand what companies expect from fresh graduates.”</p><strong>— Ananya, Student</strong></div><div class="testimonial"><p>“The mentor gave me practical advice and helped me improve my portfolio.”</p><strong>— Omar, Design Learner</strong></div><div class="testimonial"><p>“It is useful because students can learn from real professional experience.”</p><strong>— Sara, University Student</strong></div></div>
+</section>
+</main>
+<footer><div class="footer-content"><div><h3>ExpertLink</h3><p>Connecting curious learners with experienced professionals.</p></div><div><h4>Platform</h4><a>Find Experts</a><a>Categories</a><a>Pricing</a></div><div><h4>Resources</h4><a>Blog</a><a>Help Center</a><a>Mentor Guidelines</a></div><div><h4>Company</h4><a>About Us</a><a>Contact</a><a>Privacy Policy</a></div></div><div class="copyright">© 2026 ExpertLink. Demo project website.</div></footer>
+<div class="modal" id="bookingModal"><div class="modal-content"><h2>Session Booked!</h2><p id="modalText">Your mentoring session has been booked successfully.</p><button class="close-btn" onclick="closeModal()">Close</button></div></div>
+<script>
+let selectedCategory="All";
+function scrollToExperts(){document.getElementById("experts").scrollIntoView({behavior:"smooth"})}
+function setCategory(category,button){selectedCategory=category;document.querySelectorAll(".filter-btn").forEach(btn=>btn.classList.remove("active"));button.classList.add("active");filterExperts()}
+function filterExperts(){const searchValue=document.getElementById("searchInput").value.toLowerCase();document.querySelectorAll(".expert-card").forEach(card=>{const cardCategory=card.getAttribute("data-category");const cardName=card.getAttribute("data-name").toLowerCase();const matchesCategory=selectedCategory==="All"||cardCategory===selectedCategory;const matchesSearch=cardName.includes(searchValue);card.style.display=matchesCategory&&matchesSearch?"block":"none"})}
+function openModal(expertName){document.getElementById("modalText").innerText="Your demo session with "+expertName+" has been booked successfully.";document.getElementById("bookingModal").style.display="flex"}
+function closeModal(){document.getElementById("bookingModal").style.display="none"}
+window.onclick=function(event){const modal=document.getElementById("bookingModal");if(event.target===modal){closeModal()}}
+</script>
+</body>
+</html>
